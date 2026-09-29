@@ -1,0 +1,18 @@
+<view
+  class="char-card char-card--{{size}} {{ learned ? 'is-learned' : '' }}"
+  bindtap="onTap"
+>
+  <view class="char-card__emoji">{{ emoji }}</view>
+  <view class="char-card__char">{{ char }}</view>
+  <view class="char-card__pinyin">{{ pinyin }}</view>
+  <view class="char-card__hint" wx:if="{{ hint }}">{{ hint }}</view>
+
+  <view class="char-card__stars" wx:if="{{ stars > 0 }}">
+    <text class="star" wx:for="{{[1,2,3]}}" wx:key="*this"
+          wx:if="{{ item <= stars }}">⭐</text>
+    <text class="star star--empty" wx:for="{{[1,2,3]}}" wx:key="*this"
+          wx:if="{{ item > stars }}">☆</text>
+  </view>
+
+  <slot name="footer"></slot>
+</view>

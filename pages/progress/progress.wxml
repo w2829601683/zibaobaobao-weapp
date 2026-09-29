@@ -1,0 +1,100 @@
+<view class="container">
+
+  <!-- 顶部成就卡 -->
+  <view class="stats-hero">
+    <view class="stats-hero__row">
+      <view class="big-stat">
+        <view class="big-stat__num">{{ learnedCount }}</view>
+        <view class="big-stat__label">已学字 / {{ totalChars }}</view>
+      </view>
+      <view class="big-stat">
+        <view class="big-stat__num big-stat__num--stars">{{ totalStars }}</view>
+        <view class="big-stat__label">⭐ 总星星</view>
+      </view>
+    </view>
+
+    <view class="big-progress">
+      <view class="big-progress__fill" style="width: {{ learnedPercent }}%;"></view>
+    </view>
+    <view class="big-progress__text">完成度 {{ learnedPercent }}%</view>
+  </view>
+
+  <!-- 测验统计 -->
+  <view class="card stats-card">
+    <view class="stats-card__title">📊 测验统计</view>
+    <view class="stat-grid">
+      <view class="stat-item">
+        <view class="stat-item__num">{{ quizCorrect }}</view>
+        <view class="stat-item__label">答对</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-item__num">{{ quizTotal - quizCorrect }}</view>
+        <view class="stat-item__label">答错</view>
+      </view>
+      <view class="stat-item">
+        <view class="stat-item__num">{{ accuracy }}%</view>
+        <view class="stat-item__label">正确率</view>
+      </view>
+    </view>
+    <view wx:if="{{ quizTotal === 0 }}" class="stats-card__hint">
+      还没有测验过哦，去首页玩玩「小测验」吧 🎮
+    </view>
+  </view>
+
+  <!-- 分类进度 -->
+  <view class="section-title">📚 各分类进度</view>
+  <view class="cat-list">
+    <view
+      wx:for="{{ categories }}"
+      wx:key="id"
+      class="cat-item"
+      data-id="{{ item.id }}"
+      bindtap="onCategoryTap"
+    >
+      <view class="cat-item__icon" style="background: {{ item.color }};">{{ item.icon }}</view>
+      <view class="cat-item__main">
+        <view class="cat-item__name">{{ item.name }}</view>
+        <view class="cat-item__progress-bar">
+          <view class="cat-item__progress-fill"
+                style="width: {{ item.percent }}%; background: {{ item.color }};"></view>
+        </view>
+        <view class="cat-item__sub">{{ item.learned }} / {{ item.total }} 个字</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 已学字 -->
+  <view wx:if="{{ learnedChars.length > 0 }}" class="section-title">
+    🌟 最近学习的字
+  </view>
+  <view wx:if="{{ learnedChars.length > 0 }}" class="learned-grid">
+    <view
+      wx:for="{{ learnedChars }}"
+      wx:key="char"
+      class="learned-item"
+      data-cat="{{ item.category }}"
+      bindtap="onCharTap"
+    >
+      <view class="learned-item__emoji">{{ item.meta.emoji }}</view>
+      <view class="learned-item__char">{{ item.char }}</view>
+      <view class="learned-item__pinyin">{{ item.meta.pinyin }}</view>
+      <view class="learned-item__stars">
+        <text wx:for="{{[1,2,3]}}" wx:for-item="s"
+              wx:if="{{ s <= item.stars }}">⭐</text>
+      </view>
+    </view>
+  </view>
+
+  <view wx:if="{{ learnedChars.length === 0 }}" class="empty">
+    <view class="empty__emoji">🐣</view>
+    <view class="empty__text">还没学过字宝宝哦</view>
+    <view class="empty__hint">回到首页选一个分类开始吧～</view>
+  </view>
+
+  <!-- 重置 -->
+  <view class="reset-row">
+    <view class="reset-btn" bindtap="onReset">🗑️ 清空进度</view>
+  </view>
+
+  <view style="height: 60rpx;"></view>
+</view>

@@ -1,0 +1,142 @@
+/* ============== 顶部欢迎 ============== */
+.hero {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #FFD56B 0%, #FF8A4C 100%);
+  border-radius: 32rpx;
+  padding: 36rpx 32rpx;
+  margin-bottom: 32rpx;
+  color: #FFFFFF;
+  box-shadow: 0 8rpx 24rpx rgba(255, 138, 76, 0.3);
+}
+
+.hero__avatar {
+  font-size: 80rpx;
+  margin-right: 24rpx;
+  line-height: 1;
+}
+
+.hero__text { flex: 1; }
+
+.hero__greeting {
+  font-size: 32rpx;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.hero__stats {
+  font-size: 26rpx;
+  opacity: 0.95;
+}
+
+.hero__num {
+  font-size: 38rpx;
+  font-weight: 700;
+  margin: 0 4rpx;
+}
+
+/* ============== 今日推荐 ============== */
+.daily-section {
+  margin-bottom: 32rpx;
+}
+
+.daily-label {
+  font-size: 28rpx;
+  color: #FF8A4C;
+  font-weight: 600;
+  margin-bottom: 16rpx;
+  padding-left: 8rpx;
+}
+
+/* ============== 分类网格 ============== */
+.section-title {
+  font-size: 32rpx;
+  font-weight: 700;
+  color: #4A3B2A;
+  margin: 16rpx 8rpx 24rpx;
+}
+
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20rpx;
+  margin-bottom: 36rpx;
+}
+
+.category-card {
+  flex: 1 1 calc(50% - 10rpx);
+  min-width: calc(50% - 10rpx);
+  border-radius: 28rpx;
+  padding: 32rpx 24rpx;
+  color: #4A3B2A;
+  box-shadow: 0 6rpx 16rpx rgba(0, 0, 0, 0.08);
+  transition: transform 0.15s;
+  position: relative;
+}
+
+.category-card:active {
+  transform: scale(0.96);
+}
+
+.category-card__icon {
+  font-size: 64rpx;
+  line-height: 1;
+  margin-bottom: 12rpx;
+}
+
+.category-card__name {
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-bottom: 4rpx;
+}
+
+.category-card__desc {
+  font-size: 22rpx;
+  opacity: 0.8;
+  margin-bottom: 12rpx;
+}
+
+.category-card__progress {
+  font-size: 22rpx;
+  background: rgba(255, 255, 255, 0.6);
+  display: inline-block;
+  padding: 4rpx 14rpx;
+  border-radius: 999rpx;
+}
+
+/* ============== 小测验入口 ============== */
+.quiz-banner {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, #6BCB77 0%, #4FA95D 100%);
+  border-radius: 32rpx;
+  padding: 32rpx;
+  color: #FFFFFF;
+  box-shadow: 0 8rpx 24rpx rgba(107, 203, 119, 0.3);
+}
+
+.quiz-banner:active { transform: scale(0.98); }
+
+.quiz-banner__icon {
+  font-size: 60rpx;
+  margin-right: 24rpx;
+}
+
+.quiz-banner__text { flex: 1; }
+
+.quiz-banner__title {
+  font-size: 32rpx;
+  font-weight: 700;
+  margin-bottom: 4rpx;
+}
+
+.quiz-banner__sub {
+  font-size: 24rpx;
+  opacity: 0.95;
+}
+
+.quiz-banner__arrow {
+  font-size: 48rpx;
+  font-weight: 300;
+  opacity: 0.7;
+}

@@ -1,0 +1,37 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/learn/learn",
+    "pages/quiz/quiz",
+    "pages/progress/progress"
+  ],
+  "window": {
+    "navigationBarBackgroundColor": "#FFD56B",
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "字宝宝",
+    "backgroundColor": "#FFF8E7",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#9C8B6F",
+    "selectedColor": "#FF8A4C",
+    "backgroundColor": "#FFFFFF",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "学字",
+        "iconPath": "assets/tab-home.png",
+        "selectedIconPath": "assets/tab-home-active.png"
+      },
+      {
+        "pagePath": "pages/progress/progress",
+        "text": "我的",
+        "iconPath": "assets/tab-me.png",
+        "selectedIconPath": "assets/tab-me-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

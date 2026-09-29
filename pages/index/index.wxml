@@ -1,0 +1,57 @@
+<view class="container">
+
+  <!-- 顶部欢迎 -->
+  <view class="hero">
+    <view class="hero__avatar">👶</view>
+    <view class="hero__text">
+      <view class="hero__greeting">{{ greeting }}</view>
+      <view class="hero__stats">
+        已学 <text class="hero__num">{{ learnedCount }}</text> / {{ totalCount }} 个字
+      </view>
+    </view>
+  </view>
+
+  <!-- 今日推荐字 -->
+  <view wx:if="{{ dailyChar }}" class="daily-section" bindtap="onDailyCharTap">
+    <view class="daily-label">🌟 今日推荐</view>
+    <char-card
+      char="{{ dailyChar.char }}"
+      pinyin="{{ dailyChar.pinyin }}"
+      emoji="{{ dailyChar.emoji }}"
+      hint="点击开始学习"
+      size="medium"
+    />
+  </view>
+
+  <!-- 分类网格 -->
+  <view class="section-title">📚 选一个主题开始学</view>
+  <view class="category-grid">
+    <view
+      wx:for="{{ categories }}"
+      wx:key="id"
+      class="category-card"
+      style="background: {{ item.color }}"
+      data-id="{{ item.id }}"
+      bindtap="onCategoryTap"
+    >
+      <view class="category-card__icon">{{ item.icon }}</view>
+      <view class="category-card__name">{{ item.name }}</view>
+      <view class="category-card__desc">{{ item.desc }}</view>
+      <view class="category-card__progress">
+        已学 {{ item.learned }}/{{ item.total }}
+      </view>
+    </view>
+  </view>
+
+  <!-- 小测验入口 -->
+  <view class="quiz-banner" bindtap="onQuizTap">
+    <view class="quiz-banner__icon">🎮</view>
+    <view class="quiz-banner__text">
+      <view class="quiz-banner__title">小测验</view>
+      <view class="quiz-banner__sub">看图选字，赢取星星 ✨</view>
+    </view>
+    <view class="quiz-banner__arrow">›</view>
+  </view>
+
+  <view style="height: 60rpx;"></view>
+</view>

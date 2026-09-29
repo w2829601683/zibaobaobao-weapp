@@ -1,0 +1,104 @@
+<view class="container">
+
+  <!-- 顶部进度条 -->
+  <view class="top-bar">
+    <view class="top-bar__back" bindtap="onPrev">‹</view>
+    <view class="top-bar__title">{{ categoryName }}</view>
+    <view class="top-bar__progress">{{ progressText }}</view>
+  </view>
+
+  <view class="progress-bar">
+    <view class="progress-bar__fill"
+          style="width: {{ (currentIndex + 1) / chars.length * 100 }}%;"></view>
+  </view>
+
+  <!-- 列表视图 / 卡片视图切换 -->
+  <view class="toggle-row">
+    <view class="toggle-btn {{ showList ? 'is-active' : '' }}" bindtap="onShowList">
+      {{ showList ? '🃏 卡片模式' : '📋 列表模式' }}
+    </view>
+  </view>
+
+  <!-- 卡片视图 -->
+  <view class="card-view" wx:if="{{ !showList && currentChar }}">
+
+    <!-- 主体字卡（点字触发朗读） -->
+    <view class="char-stage" bindtap="onTapChar">
+      <view class="char-stage__emoji">{{ currentChar.emoji }}</view>
+
+      <!-- 主体大字（可点击） -->
+      <view class="char-stage__big-char {{ charTapActive ? 'is-active' : '' }}">
+        {{ currentChar.char }}
+      </view>
+
+      <!-- 拼音（可点击，单独读音） -->
+      <view class="char-stage__pinyin {{ pinyinTapActive ? 'is-active' : '' }}"
+            catchtap="onTapPinyin">
+        {{ currentChar.pinyin }}
+      </view>
+
+      <view class="char-stage__hint">{{ currentChar.hint }}</view>
+
+      <view class="char-stage__stars" wx:if="{{ currentChar.stars > 0 }}">
+        <text class="big-star" wx:for="{{[1,2,3]}}" wx:key="*this"
+              wx:if="{{ item <= currentChar.stars }}">⭐</text>
+      </view>
+
+      <view class="char-stage__hint-tap">👆 点字 · 点拼音 跟读</view>
+    </view>
+
+    <view class="action-row">
+      <view class="action-btn action-btn--sound" bindtap="onSpeak">
+        🔊 跟我读
+      </view>
+      <view class="action-btn action-btn--master" bindtap="onMaster">
+        ⭐ 我学会了
+      </view>
+    </view>
+
+    <view class="nav-row">
+      <view class="nav-btn" bindtap="onPrev">‹ 上一个</view>
+      <view class="nav-btn nav-btn--primary" bindtap="onNext">下一个 ›</view>
+    </view>
+  </view>
+
+  <!-- 列表视图 -->
+  <view class="list-view" wx:if="{{ showList }}">
+    <view class="char-list">
+      <view
+        wx:for="{{ chars }}"
+        wx:key="char"
+        class="char-list__item {{ currentIndex === index ? 'is-active' : '' }} {{ learnedSet[item.char] ? 'is-learned' : '' }}"
+        data-idx="{{ index }}"
+        bindtap="onListItemTap"
+      >
+        <view class="char-list__emoji">{{ item.emoji }}</view>
+        <view class="char-list__char">{{ item.char }}</view>
+        <view class="char-list__pinyin">{{ item.pinyin }}</view>
+        <view class="char-list__badge" wx:if="{{ learnedSet[item.char] }}">⭐</view>
+      </view>
+    </view>
+  </view>
+
+  <view style="height: 40rpx;"></view>
+</view>
+
+<!-- 点字弹窗（详情卡片） -->
+<view class="detail-modal {{ showDetail ? 'show' : '' }}" bindtap="onCloseDetail">
+  <view class="detail-modal__card" catchtap="">
+    <view class="detail-modal__emoji">{{ detailData.emoji }}</view>
+    <view class="detail-modal__char">{{ detailData.char }}</view>
+    <view class="detail-modal__pinyin">{{ detailData.pinyin }}</view>
+    <view class="detail-modal__divider"></view>
+    <view class="detail-modal__hint">💡 {{ detailData.hint }}</view>
+
+    <view class="detail-modal__steps">
+      <view class="detail-modal__step-title">📖 跟我读三遍：</view>
+      <view class="detail-modal__step">第 1 遍 · {{ detailData.pinyin }} · {{ detailData.char }}</view>
+      <view class="detail-modal__step">第 2 遍 · {{ detailData.pinyin }} · {{ detailData.char }}</view>
+      <view class="detail-modal__step">第 3 遍 · {{ detailData.pinyin }} · {{ detailData.char }}</view>
+    </view>
+
+    <view class="detail-modal__close" catchtap="onCloseDetail">我会读了 ✓</view>
+  </view>
+</view>

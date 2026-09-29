@@ -1,0 +1,65 @@
+<!-- 答题中 -->
+<view class="container" wx:if="{{ status === 'playing' }}">
+
+  <view class="quiz-header">
+    <view class="quiz-header__progress">第 {{ current }} / {{ total }} 题</view>
+    <view class="quiz-header__score">⭐ {{ starsEarned }}</view>
+  </view>
+
+  <view class="quiz-progress-bar">
+    <view class="quiz-progress-bar__fill"
+          style="width: {{ current / total * 100 }}%;"></view>
+  </view>
+
+  <!-- 题卡 -->
+  <view class="quiz-card">
+    <view class="quiz-card__emoji">{{ question.emoji }}</view>
+    <view class="quiz-card__hint">这是哪个字宝宝？</view>
+  </view>
+
+  <!-- 选项 -->
+  <view class="options-grid">
+    <view
+      wx:for="{{ options }}"
+      wx:key="char"
+      class="option {{ showResult ? (item.char === question.char ? 'is-correct' : (selectedIdx === index ? 'is-wrong' : '')) : '' }}"
+      data-idx="{{ index }}"
+      bindtap="onOptionTap"
+    >
+      <view class="option__char">{{ item.char }}</view>
+      <view class="option__pinyin">{{ item.pinyin }}</view>
+      <view class="option__check" wx:if="{{ showResult && item.char === question.char }}">✓</view>
+      <view class="option__cross" wx:if="{{ showResult && selectedIdx === index && item.char !== question.char }}">✗</view>
+    </view>
+  </view>
+
+</view>
+
+<!-- 结算页 -->
+<view class="container" wx:if="{{ status === 'finished' }}">
+  <view class="summary">
+    <view class="summary__emoji">{{ summary.emoji }}</view>
+    <view class="summary__title">{{ summary.title }}</view>
+    <view class="summary__message">{{ summary.message }}</view>
+
+    <view class="summary__stats">
+      <view class="stat-row">
+        <view class="stat-row__label">答对</view>
+        <view class="stat-row__value">{{ summary.correct }} / {{ summary.total }}</view>
+      </view>
+      <view class="stat-row">
+        <view class="stat-row__label">正确率</view>
+        <view class="stat-row__value">{{ summary.accuracy }}%</view>
+      </view>
+      <view class="stat-row">
+        <view class="stat-row__label">获得星星</view>
+        <view class="stat-row__value">⭐ {{ summary.starsEarned }}</view>
+      </view>
+    </view>
+
+    <view class="summary__actions">
+      <view class="btn btn-secondary" bindtap="onBack">返回首页</view>
+      <view class="btn" bindtap="onRestart">再来一次</view>
+    </view>
+  </view>
+</view>

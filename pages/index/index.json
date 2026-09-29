@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "字宝宝 · 学字",
+  "navigationBarBackgroundColor": "#FFD56B",
+  "navigationBarTextStyle": "black",
+  "enablePullDownRefresh": false,
+  "usingComponents": {
+    "char-card": "/components/char-card/char-card"
+  }
+}

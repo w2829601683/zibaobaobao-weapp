@@ -1,0 +1,76 @@
+.char-card {
+  background: linear-gradient(135deg, #FFFFFF 0%, #FFF8E7 100%);
+  border-radius: 40rpx;
+  padding: 40rpx 32rpx;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 8rpx 24rpx rgba(255, 138, 76, 0.18);
+  transition: transform 0.15s, box-shadow 0.15s;
+  border: 4rpx solid transparent;
+}
+
+.char-card:active {
+  transform: scale(0.97);
+  box-shadow: 0 4rpx 12rpx rgba(255, 138, 76, 0.25);
+}
+
+.char-card.is-learned {
+  border-color: #FFD56B;
+  background: linear-gradient(135deg, #FFF6D6 0%, #FFE9A8 100%);
+}
+
+/* ============== 尺寸 ============== */
+.char-card--large  { padding: 60rpx 40rpx; }
+.char-card--medium { padding: 36rpx 24rpx; }
+.char-card--small  { padding: 20rpx 16rpx; }
+
+/* ============== 内容 ============== */
+.char-card__emoji {
+  font-size: 140rpx;
+  line-height: 1;
+  margin-bottom: 16rpx;
+}
+
+.char-card--medium .char-card__emoji { font-size: 90rpx; }
+.char-card--small  .char-card__emoji { font-size: 50rpx; margin-bottom: 6rpx; }
+
+.char-card__char {
+  font-size: 96rpx;
+  font-weight: 700;
+  color: #4A3B2A;
+  line-height: 1.1;
+  margin-bottom: 12rpx;
+  letter-spacing: 0.05em;
+}
+
+.char-card--medium .char-card__char { font-size: 64rpx; }
+.char-card--small  .char-card__char { font-size: 40rpx; margin-bottom: 4rpx; }
+
+.char-card__pinyin {
+  font-size: 32rpx;
+  color: #FF8A4C;
+  font-weight: 600;
+  margin-bottom: 8rpx;
+}
+
+.char-card--medium .char-card__pinyin { font-size: 26rpx; }
+.char-card--small  .char-card__pinyin { font-size: 20rpx; margin-bottom: 4rpx; }
+
+.char-card__hint {
+  font-size: 24rpx;
+  color: #9C8B6F;
+  margin-top: 8rpx;
+}
+
+.char-card--small .char-card__hint { display: none; }
+
+/* ============== 星星 ============== */
+.char-card__stars {
+  margin-top: 16rpx;
+  display: flex;
+  justify-content: center;
+  gap: 6rpx;
+}
+
+.star { font-size: 28rpx; }
+.star--empty { opacity: 0.35; }
